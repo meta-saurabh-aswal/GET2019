@@ -12,6 +12,12 @@ case of characters from uppercase to lowercase and vice-versa.
 
 class StringHandler
 {	
+	final static int caseDiff = 32;
+	final int lowerStart = 97;
+	final static int upperStart = 65;
+	final int lowerEnd = 122;
+	final static int upperEnd = 90;
+	
 	/*
 	Method for taking a string as an input.
 	@return String type.
@@ -41,15 +47,20 @@ class StringHandler
 		return temp;
 	}
 	
-	int compare(String s1, String s2)
+	int compareIgnoreCase(String s1, String s2)
 	{
+		s1 = lowercase(s1);
+		s2 = lowercase(s2);
+
+		return compareWithCase(s1, s2);
+	}
+	
+	int compareWithCase(String s1, String s2)
+	{	
 		int sSize = s1.length();
 		
 		if(s1.length() == s2.length())
-		{
-			s1 = lowercase(s1);
-			s2 = lowercase(s2);
-			
+		{			
 			for(int i=0; i < sSize; i++)
 			{
 				if(s1.charAt(i) != s2.charAt(i))
@@ -71,14 +82,14 @@ class StringHandler
 			ch = (int)s.charAt(i);
 			
 			
-			if(ch >= 65 && ch <= 90)
+			if(ch >= upperStart && ch <= upperEnd)
 			{
-				ch+=32;
+				ch+=caseDiff;
 				temp += Character.toString((char)ch);
 			}
-			else if(ch >= 97 && ch <= 122)
+			else if(ch >= lowerStart && ch <= lowerEnd)
 			{
-				ch-=32;
+				ch-=caseDiff;
 				temp +=  Character.toString((char)ch);
 			}
 		}
@@ -118,18 +129,18 @@ class StringHandler
 	String lowercase(String s)
 	{
 		String temp = new String();
-		System.out.println(temp);
+		
 		
 		for(int i=0; i < s.length(); i++)
 		{
 			int ch = (int)s.charAt(i);
-			ch += 32;
 			
-			if(ch >= 65 && ch <= 90)
+			if(ch >= upperStart && ch <= upperEnd)
 			{
+				ch += caseDiff;
 				temp = temp + Character.toString((char)ch);
 			}
-			else if(ch >=97 && ch <= 122 )
+			else
 				temp = temp + Character.toString((char)ch);
 			
 		}
@@ -142,9 +153,14 @@ class StringHandler
 		String result;
 		switch(choice)
 		{
+			case 'x':
+				System.out.println("Enter 2 strings to compare");
+				answer = compareIgnoreCase(inputString(), inputString());
+				System.out.println(answer);
+				break;
 			case 'a':
 				System.out.println("Enter 2 strings to compare");
-				answer = compare(inputString(), inputString());
+				answer = compareWithCase(inputString(), inputString());
 				System.out.println(answer);
 				break;
 			case 'b':
@@ -175,13 +191,13 @@ class StringHandler
 		Scanner sc1 = new Scanner(System.in);
 		StringHandler handler = new StringHandler();
 		
-		System.out.println("Press a to Compare\nPress b to Reverse\nPress c change the case\nPress d to find the largest word\nPress e to exit"); 
+		System.out.println("Press x to compare ignoring the case of the String\nPress a to Compare w.r.t case\nPress b to Reverse\nPress c change the case\nPress d to find the largest word\nPress e to exit"); 
 		char choice = sc1.next().charAt(0);
 		
 		int val = (int)choice;
-		if(val >= 65 && val <=90 )
+		if(val >= upperStart && val <=upperEnd )
 		{
-			val +=32;
+			val +=caseDiff;
 		}
 		
 		handler.menu((char)val);
