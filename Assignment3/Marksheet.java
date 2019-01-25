@@ -1,63 +1,45 @@
 import java.util.*;
 
 /*
-Marksheet class is to input the grades (0 to 100) of n students
-and calculate the average of all grades, calculate the percentage
-of students passed, find the minimum and maximum of all grades.
 
 @author Saurabh Aswal
+@version 1.0
+@since 20/01/18
 */
 class Marksheet
-{ 
-	static int n;					//Total number of Students.
-	double grades[];				//Array of grades of the students.
+{
+	static Scanner sc = new Scanner(System.in);
+	static int numStudents;						//numStudents for total number of students.
+	int grades[];
 	
-	/*
-	 * To input the grades and keep them in an array 'grades'.
-	 * 
-	 * @param x is the number of students of type int.
-	 */
-	void fillArray(int x)
+	void fillArray()
 	{
-		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the marks of students");
 		
-		System.out.println("Enter the grades of students in Positive numbers");
+		grades= new int[numStudents];
 		
-		grades = new double[x];
-		
-		for(int i=0; i<n; i++)
+		for(int i=0; i<numStudents; i++)
 		{
-			grades[i] = sc.nextDouble();
+			grades[i] = sc.nextInt();
 		}
-		sc.close();					//closing the scanner object.
 	}
 	
-	/*
-	 * To calculate the average grades from the array 'grades'.
-	 * 
-	 * @return average of grades of n students as type double.
-	 */
 	double avgGrades()
 	{
-		double totalGrades = 0;
+		int totalGrades = 0;
 		
-		for(int i=0; i<n; i++)
+		for(int i=0; i<numStudents; i++)
 		{
 			totalGrades+=grades[i];
 		}
-		return (totalGrades/n);
+		return (totalGrades/numStudents);
 	}
 	
-	/*
-	 * To find the minimum of all the grades.
-	 * 
-	 * @return minimum of all the grades as type double.
-	 */
-	double minGrades()
+	int minGrades()
 	{
-		double min = 100;					//Initializing minimum with maximum value for comparison.
+		int min = 100;
 		
-		for(int i=0; i< n; i++)
+		for(int i=0; i< numStudents; i++)
 		{
 			if(grades[i] < min)
 				min = grades[i];
@@ -65,16 +47,11 @@ class Marksheet
 		return min;
 	}
 	
-	/*
-	 * To find the maximum of all the grades.
-	 * 
-	 * @return maximum of all the grades as type double.
-	 */
-	double maxGrades()
+	int maxGrades()
 	{
-		double max = 0;					//Initializing maximum with the lowest value for comparison.
+		int max = 0;
 		
-		for(int i=0; i< n; i++)
+		for(int i=0; i< numStudents; i++)
 		{
 			if(grades[i] > max)
 				max = grades[i];
@@ -82,34 +59,28 @@ class Marksheet
 		return max;
 	}
 	
-	/*
-	 * To calculate the percentage of total students passed.
-	 * 
-	 *  @return percentage of students passed as type double.
-	 */
 	double passPercent()
 	{
-		int count = 0;					//For counting the number of students passed.
+		int count = 0;
 		
-		for(int i =0; i<n; i++)
+		for(int i =0; i<numStudents; i++)
 		{
 			if(grades[i] >= 40)
 				count++;
 		}
-		return (100*count/n);
+		return (100*count/numStudents);
 	}
 	
 	
 	public static void main(String args[])
 	{
-		Scanner sc1 = new Scanner(System.in);
 		System.out.println("Enter the total number of students");
-		n = sc1.nextInt();				//Input total number of students.
+		numStudents = sc.nextInt();
 		 
-		Marksheet mark = new Marksheet();
-		mark.fillArray(n);
+		 Marksheet mark = new Marksheet();
+		mark.fillArray();
 		
-		System.out.println("\nAverage grades : "+ mark.avgGrades() + "\nMinimum grade : "+ mark.minGrades() + "\nMaximum Grade : "+ mark.maxGrades() + "\nPercentage of students passed : "+mark.passPercent() +"%");
-		sc1.close();
+		System.out.println("\nAverage grades : "+ mark.avgGrades() + "\nMinimum grades : "+ mark.minGrades() + "\nMaximum Grades : "+ mark.maxGrades() + "\nPercentage of students passed : "+mark.passPercent() +"%");
+		
 	}
 }
