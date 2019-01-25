@@ -72,9 +72,9 @@ To find the number of clumps int the array.
 		
 		int count=0;
 		
-		for(int i=1; i < arr.length-1; i++)
+		for(int i=1; i < arr.length; i++)
 		{
-			if(arr[i] == arr[i-1] && (arr[i] != arr[i+1]) || i+1 == arr.length-1)		//Checking the current value with its previous and next value to ignore counting the sequence over and over.
+			if(arr[i] == arr[i-1] && (i+1 >= arr.length-1 || arr[i] != arr[i+1]))		//Checking the current value with its previous and next value to ignore counting the sequence over and over.
 			{
 				count++;
 			}
