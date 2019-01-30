@@ -119,7 +119,6 @@ final public class intSet
 			if(itr < numSet.size() && uniSet[i] == numSet.get(itr))
 			{
 				itr++;
-				continue;
 			}
 			else
 			{
@@ -152,12 +151,12 @@ final public class intSet
 		for (int i=0; i < len; i++)
 		{
 			
-			if(i < s1Len && numTable[s1.numSet.get(i).intValue()] == false)
+			if(i < s1Len && !numTable[s1.numSet.get(i).intValue()])
 			{
 				unionArr.add(Integer.valueOf(s1.numSet.get(i)));
 				numTable[s1.numSet.get(i).intValue()] = true;
 			}
-			if(i < s2Len && numTable[s2.numSet.get(i).intValue()] == false)
+			if(i < s2Len && !numTable[s2.numSet.get(i).intValue()])
 			{
 				unionArr.add(Integer.valueOf(s2.numSet.get(i)));
 				numTable[s2.numSet.get(i).intValue()] = true;
