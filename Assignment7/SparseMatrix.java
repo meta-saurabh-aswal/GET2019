@@ -173,8 +173,8 @@ final class SparseMatrix
 			throw new AssertionError();
 		
 		List<Integer[]> sparseSum = new ArrayList<Integer[]>();	
-		List<Integer> touched = new ArrayList<Integer>();				//To keep track of the elements which are at same index in both matrices.
-		int j;
+		List<Integer> tracedElement = new ArrayList<Integer>();				//To keep track of the elements which are at same index in both matrices.
+		int j, sum, rowIndex, colIndex;
 		
 		for(int i=0; i<s1.matrix.length; i++)
 		{
@@ -183,26 +183,35 @@ final class SparseMatrix
 				//Adding when values of row of s1 and s2 are equal and values of columns of s1 and s2 are equal.
 				if(s1.matrix[i][row] == s2.matrix[j][row] && s1.matrix[i][col] == s2.matrix[j][col])
 				{
-					sparseSum.add(new Integer[] {s1.matrix[i][row], s1.matrix[i][col], s1.matrix[i][val] + s2.matrix[j][val]});					
-					touched.add(j);					//Marking the object as traced.
+					sum = s1.matrix[i][val] + s2.matrix[j][val];
+					rowIndex = s1.matrix[i][row];
+					colIndex = s1.matrix[i][col];
+					
+					sparseSum.add(new Integer[] {rowIndex, colIndex, sum });					
+					tracedElement.add(j);					//Marking the object as traced.
 					break;
 				}				
 			}
 			//When no same row and column indices are found in both matrices.
 			if(j == s2.matrix.length)
-				sparseSum.add(new Integer[] {s1.matrix[i][row], s1.matrix[i][col], s1.matrix[i][val]});
+			{
+				rowIndex = s1.matrix[i][row];
+				colIndex = s1.matrix[i][col];
+				
+				sparseSum.add(new Integer[] {rowIndex, colIndex, s1.matrix[i][val]});
+			}
 		}
 		
 		for(int i =0; i<s2.matrix.length; i++)
 		{
-			if(touched.contains(i))	
-			{
-				continue;
-			}
-			else	
-			{	//To add elements other than those with same indices (left out elements).
-				sparseSum.add(new Integer[] {s2.matrix[i][row], s2.matrix[i][col], s2.matrix[i][val]});
-				touched.add(i);				//Adding the element in touched list after it has been added to sparseSum.
+			if(!(tracedElement.contains(i)))
+			{	
+				rowIndex = s2.matrix[i][row];
+				colIndex = s2.matrix[i][col];
+				
+				//To add elements other than those with same indices (left out elements).
+				sparseSum.add(new Integer[] {rowIndex, colIndex, s2.matrix[i][val]});
+				tracedElement.add(i);				//Adding the element in touched list after it has been added to sparseSum.
 			}
 			
 		}
