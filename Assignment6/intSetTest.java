@@ -2,64 +2,6 @@ import static org.junit.Assert.*;
 import java.util.*;
 import org.junit.Test;
 
-
-/*public class intSetTest {
-
-    @Test
-    public void TestIsMember() {
-        int[] arr=new int[]{1,2,8,9,4,6,55,76};
-        intSet ints = new intSet(arr);
-        boolean is=ints.isMember(55);
-        assertEquals(is,true);
-    }
-
-    @Test
-    public void TestIsSubset() {
-        int[] arr=new int[]{1,2,8,9,4,6,55,76};
-        intSet ints = new intSet(arr);
-        int[] arr1=new int[]{1,2,8,9};
-        intSet ints1 = new intSet(arr1);
-        boolean is=ints.isSubset(ints1);
-        assertEquals(is,true);
-    }
-
-    @Test
-    public void TestIsSubset1() {
-        int[] arr=new int[]{1,2,8,9,4,6,55,76};
-        intSet ints = new intSet(arr);
-        int[] arr1=new int[]{1,2};
-        intSet ints1 = new intSet(arr1);
-        boolean is=ints.isSubset(ints1);
-        assertEquals(is,true);
-    }
-
-
-    @Test
-    public void TestgetCompliment() {
-        int[] arr=new int[]{1,2,8,9,4,6,55,76,1000};
-        int[] arr1=new int[1001];
-        intSet ints = new intSet(arr);
-        assertArrayEquals(arr1,ints.getComplement());
-    }
-
-    @Test
-    public void Testunion() {
-        ArrayList<Integer> expected=new ArrayList<Integer> (Arrays.asList(2,3,5,9));
-        int[] arr=new int[]{9,5,2};
-        intSet ints = new intSet(arr);
-        int[] arr2=new int[]{3,2};
-        intSet ints2 = new intSet(arr2);
-        intSet intSet3 = new intSet(new int[]{0});
-        
-        assertArrayEquals(expected,intSet3.union(ints,ints2));
-    }
-}
-*/
-
-import static org.junit.Assert.*;
-import java.util.*;
-import org.junit.Test;
-
 public class intSetTest
 {
 	
