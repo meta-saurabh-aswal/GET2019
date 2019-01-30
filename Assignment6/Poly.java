@@ -69,15 +69,15 @@ final class Poly
 		
 		int[] arrPower = new int[count];
 		int[] arrCoeff = new int[count];
-		int Itr = 0;				//To keep track of the resulting array.
+		int itr = 0;				//To keep track of the resulting array.
 		
 		for(int i=0; i<c.length; i++)
 		{
 			//When coefficients are not equal to zero, copy them in the resultant array. 
 			if(c[i] != 0)
 			{
-				arrPower[Itr] = p[i];
-				arrCoeff[Itr] = c[i];
+				arrPower[itr] = p[i];
+				arrCoeff[itr] = c[i];
 			}
 		}
 		
@@ -95,7 +95,7 @@ final class Poly
 	}
 	
 	/*
-	 * To evaluate the expression with a the value of x.
+	 * To evaluate the expression with the value of x.
 	 * 
 	 * @param x as integer.
 	 * @return the value of the polynomial with the value of x as int.
