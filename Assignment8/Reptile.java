@@ -6,5 +6,9 @@
  */
 public class Reptile extends Animal
 {
+	Reptile()
+	{
+		this.category = "Reptile";
+	}
 
 }
