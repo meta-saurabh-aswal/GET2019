@@ -6,5 +6,10 @@
  */
 class Mammal extends Animal
 {
-
+	
+	Mammal()
+	{
+		this.category = "Mammal";
+	}
+	
 }
