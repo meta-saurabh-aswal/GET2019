@@ -6,5 +6,9 @@
  */
 class Bird extends Animal
 {
+	Bird()
+	{
+		this.category = "Bird";
+	}
 
 }
