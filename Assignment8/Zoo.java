@@ -22,43 +22,42 @@ public class Zoo
 	/*
 	 * Utility method to create the object of specific type of animal based on the
 	 	details input.
+		The method gets the category of the type of animal from its superclass.
 	 	
-	 	@param category of the animal as String
 	 	@param type of the animal as string
 	 	@param name of the animal that should be distinct.
 	 	@return animal object with the properties of a specific type.
 	 */
-	Animal buildObj(String category, String type, String name)
+	Animal buildObj(String type, String name)
 	{
 		Animal a = null;
 		switch (type)
 		{
 		case "Tiger":
-			a = new Tiger(category, type, name);
+			a = new Tiger(Tiger.class.getSuperclass().getSimpleName(), type, name);
 			break;
 		
 		case "Sparrow":
-			a = new Sparrow(category, type, name);
+			a = new Sparrow(Sparrow.class.getSuperclass().getSimpleName(), type, name);
 			break;
 			
 		case "Snake":
-			a = new Snake(category, type, name);
-			break;
-			
+			a = new Snake(Snake.class.getSuperclass().getSimpleName(), type, name);
+			break;		
 		}
+		
 		return a;
 	}
 	
 /*
  * Method to add an animal to a cage of a specific type.
  * 
- * @param category of the animal as String
 	@param type of the animal as string
 	@param name of the animal that should be distinct.
  */
-	void addAnimal(String category, String type, String name)
+	void addAnimal(String type, String name)
 	{
-		Animal animalObj = buildObj(category, type, name);
+		Animal animalObj = buildObj(type, name);
 		
 		boolean flag = false;
 		
@@ -107,20 +106,19 @@ public class Zoo
 	/*
 	 * Method to remove an animal from the zoo.
 	 * 
-	 * @param category of the animal as String
 		@param type of the animal as string
 		@param name of the animal that should be distinct.
 		@return the updated list of animals after removal.
 	 */
-	List<Animal> removeAnimal(String category, String type, String name)
-	{
+	List<Animal> removeAnimal(String type, String name)
+	{				
 		Iterator<Zone> zoneItr = zoneList.iterator();
 		
 		while(zoneItr.hasNext())
 		{
 			Zone z = zoneItr.next();
 			
-			if(z.category.equalsIgnoreCase(category))
+			if(z.category.equalsIgnoreCase(getCategory(type)))
 			{
 				Iterator<Cage> cageItr = z.cageList.iterator();
 				
@@ -152,21 +150,20 @@ public class Zoo
 	}
 	
 	/*
-	 * Method to add a cage of specific type in a zone of of specific category.
+	 * Method to add a cage of specific type in a zone of a specific category.
 	 * 
-	 *  @param category of the cage as String
 		@param type of the cage as string
 		@param capacity of the cage.
 	 */
-	void addCage(String category, String type, int capacity)
+	void addCage(String type, int capacity)
 	{
 		int i;
 		boolean flag = false;
 
 		for(i=0; i < zoneList.size(); i++)
 		{
-
-			if(zoneList.get(i).category.equalsIgnoreCase(category) && zoneList.get(i).limit > zoneList.get(i).cageList.size())
+			//Using getCategory method to get the category of an animal/cage type as string.
+			if(zoneList.get(i).category.equalsIgnoreCase(getCategory(type)) && zoneList.get(i).limit > zoneList.get(i).cageList.size())
 			{
 				zoneList.get(i).cageList.add(new Cage(type, capacity));
 				flag = true;
@@ -177,6 +174,31 @@ public class Zoo
 		}
 		if(!(flag))
 			throw new AssertionError();
+	}
+	
+	/*
+	 * Utility method to get the category of a type of animal for building a cage.
+	 * 
+	 * @param specific type of the animal for the cage as String.
+	 * @return category of the type of animal as string.
+	 */
+	String getCategory(String type)
+	{
+		String cat = null;
+		
+		switch(type.toUpperCase())
+		{
+			case "TIGER":
+				cat = Tiger.class.getSuperclass().getSimpleName();
+				break;
+			case "SPARROW":
+				cat = Sparrow.class.getSuperclass().getSimpleName();
+				break;
+			case "SNAKE":
+				cat = Snake.class.getSuperclass().getSimpleName();
+				break;
+		}
+		return cat;
 	}
 
 	
