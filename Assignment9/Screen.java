@@ -16,7 +16,7 @@ class Screen
 	//Dimensions of the screen as final.
 	public static final double XMAX=1000, YMAX=1000, XMIN=0, YMIN=0;
 	List<Shape> screenShapes = new ArrayList<Shape>();				//List to store the shapes on the screen.
-	List<Shape> enclosers = new ArrayList<Shape>();					//List to store the shapes enclosing the given point.
+	
 	
 	//Private constructor to allow Singleton class.
 	private Screen(){}
@@ -85,8 +85,10 @@ class Screen
 	 * 
 	 * @param reference of the object of point p of type Point.
 	 */
-	void enclosingShapes(Point p)
+	List<Shape> enclosingShapes(Point p)
 	{
+		List<Shape> enclosers = new ArrayList<Shape>();					//List to store the shapes enclosing the given point.
+		
 		Iterator<Shape> shapeItr = screenShapes.iterator();
 		
 		while(shapeItr.hasNext())
@@ -98,6 +100,8 @@ class Screen
 				enclosers.add(s);
 			}
 		}
+		
+		return enclosers;
 	}
 
 }
