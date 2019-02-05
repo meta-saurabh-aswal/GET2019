@@ -48,4 +48,18 @@ public class ShapeFactoryTest
 		Point p = new Point(6,5);
 		enclosers = screenObj.enclosingShapes(p);	
 	}
+	
+	@Test(expected = AssertionError.class)
+	public void test0()
+	{	
+		Screen screenObj = Screen.getScreenObject();
+		
+		//@params {X coordinate of origin, Y coordinate, length of the rectangle, width}
+		double rParams[] = new double[] {5, 4, 2, 3};	
+		screenObj.addShape("rectangle", rParams);
+		
+		//Circle {X coordinate of origin, Y coordinate, radius of the circle}
+		double cParams[] = new double[] {1, 5, 3};
+		screenObj.addShape("circle", cParams);	
+	}
 }
