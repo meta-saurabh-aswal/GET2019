@@ -36,21 +36,21 @@ class ShapeFactory
 		switch(type)
 		{
 		case RECTANGLE:
-			if(!(validateRectangle(param)))				//Checking if the shape can be created in the screen with given dimensions.
+			if(!(validate( param[0], param[1], param[2], param[3])))				//Checking if the shape can be created in the screen with given dimensions.
 				throw new AssertionError();
 			
 			 s = new Rectangle(++shapeId, param[0], param[1], param[2], param[3]);
 			 break;
 			 
 		case TRIANGLE:
-			if(!(validateTriangle(param)))
+			if(!(validate(param[0], param[1], param[2], param[3])))
 				throw new AssertionError();
 			
 			 s = new Triangle(++shapeId, param[0], param[1], param[2], param[3], param[4]); 
 			 break; 
 			 
 		case SQUARE:
-			if(!(validateSquare(param)))
+			if(!(validate( param[0], param[1], param[2], param[2])))
 				throw new AssertionError();
 			
 			s = new Square(++shapeId, param[0], param[1], param[2]);
@@ -71,55 +71,19 @@ class ShapeFactory
 	}
 	
 	/*
-	 * Method to check if the rectangle can be built in the screen with given dimensions.
+	 * Method to check if the rectangle,square or triangle can be built in the screen with given dimensions.
 	 * 
-	 * @param origin coordinates, length, width of the rectangle as an array of double.
+	 * @param origin coordinates and sides of the rectangle, square or triangle as an array of double.
 	 * @return true of false as per the validation.
 	 */
-	static boolean validateRectangle(double[] param)
+	static boolean validate(double x, double y, double s1, double s2)
 	{
-		/*param[0] & param[1] as x & y coordinate of the origin respectively.
-		 * param[2], param[3] as the length and width of the rectangle.
-		 */
-		if(param[0] > Screen.XMIN && param[1] > Screen.YMIN && param[0]+param[2] <= Screen.XMAX && param[1]+param[3] <= Screen.YMAX)
+		if(x > Screen.XMIN && y > Screen.YMIN && x+s1 <= Screen.XMAX && y+s2 <= Screen.YMAX)
 			return true;
 		else
 			return false;
 	}
 	
-	/*
-	 * Method to check if the square can be built in the screen with given dimensions.
-	 * 
-	 * @param origin coordinates & side of the rectangle as an array of double.
-	 * @return true of false as per the validation.
-	 */
-	static boolean validateSquare(double[] param)
-	{
-		/*param[0] & param[1] as x & y coordinate of the origin respectively.
-		 * param[2] as side of the square.
-		 */
-		if(param[0] > Screen.XMIN && param[1] > Screen.YMIN && param[0]+param[2] <= Screen.XMAX && param[1]+param[2] <= Screen.YMAX)
-			return true;
-		else
-			return false;
-	}
-	
-	/*
-	 * Method to check if the triangle can be built in the screen with given dimensions.
-	 * 
-	 * @param origin coordinates, and all three sides of the right angled triangle as an array of double.
-	 * @return true of false as per the validation.
-	 */
-	static boolean validateTriangle(double[] param)
-	{
-		/*param[0] & param[1] as x & y coordinate of the origin respectively.
-		 * param[2], param[3] & param[4] as sides of the right angled triangle.
-		 */
-		if(param[0] > Screen.XMIN && param[1] > Screen.YMIN && param[0]+param[2] <= Screen.XMAX && param[1]+param[3] <= Screen.YMAX)
-			return true;
-		else
-			return false;
-	}
 	
 	/*
 	 * Method to check if the rectangle can be built in the screen with given dimensions
