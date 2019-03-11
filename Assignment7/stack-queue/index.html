@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Stack Queue</title>
+        <script src="script/stack-queue.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body style="padding:50px">
+        
+            <div class="container">
+
+               <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Enter the Value for STACK</label>
+                            <input type="text" class="form-control" id="getValue">
+                        </div>            
+                    </div>
+               </div> 
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button style="padding:5px;" class="btn btn-primary" onclick=stc.pushValue()>Push</button>
+                        <button style="padding:5px;" class="btn btn-danger" onclick=stc.popValue()>Pop</button>          
+                    </div>
+                </div>
+
+                <div class="row" style="padding-left:20px; margin-top:10px">
+                        <p><strong>Stack is :</strong></p>
+                        <p id="demo">Empty</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Enter the Value for QUEUE</label>
+                            <input type="text" class="form-control" id="getQueueValue"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                        <div class="col-md-12">
+                            <button style="padding:5px;" class="btn btn-primary" onclick=queue.enQueue()>Enqueue</button>
+                            <button style="padding:5px;" class="btn btn-danger" onclick=queue.deQueue()>Dequeue</button>          
+                        </div>
+                </div>
+
+                <div class="row" style="padding-left:20px; margin-top:10px">
+                        <p><strong>Queue is :</strong></p>
+                        <p id="result">Empty</p>
+                </div>
+
+            </div>
+    </body>
+</html>

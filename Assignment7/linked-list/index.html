@@ -1,0 +1,51 @@
+<html>
+    
+    <head> 
+        <title>Linked List</title>
+        <script src="script/singly.js"></script>
+        <script src="script/doubly.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
+    <body style="padding:50px">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12 col-lg-6" style="padding:10px">
+                    <div class="form-action">
+                        <label><strong>Single Linked List</strong></label>
+                        <input type="number" class="form-control" id="getValue" placeholder="Enter the value"/>
+                        <label>Enter the Position of the element to add</label>
+                        <input type="number" class="form-control" id="getPosition" placeholder="Enter the value"/>
+                        <button class="btn btn-primary" onclick="object.add()" style="margin-top:10px;">Add Element</button>
+                        <button class="btn btn-danger" onclick="object.removeElement()" style="margin-top:10px;">Delete Element</button>
+                        <div class="row" style="padding-left:20px; margin-top:10px">
+                           <p><strong>Output : </strong></p>
+                           <p id="resultSingle">Empty</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-lg-6" style="padding:10px">
+                        <div class="form-action">
+                                <label><strong>Doubly Linked List</strong></label>
+                                <input type="number" class="form-control" id="getValueDouble" placeholder="Enter the value"/>
+                                <label>Enter the Position of the element to add</label>
+                                <input type="number" class="form-control" id="getPositionDouble" placeholder="Enter the value"/>
+                                <button class="btn btn-primary" onclick="doubleObject.addDouble()" style="margin-top:10px;">Add Element</button>
+                                <button class="btn btn-danger" onclick="doubleObject.deleteDouble()" style="margin-top:10px;">Delete Element</button>
+                                <div class="row" style="padding-left:20px; margin-top:10px">
+                                    <p><strong>Output : </strong></p>
+                                    <p id="resultDouble">Empty</p>
+                                </div>
+                        </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
